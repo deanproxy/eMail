@@ -11,18 +11,22 @@ A:  'email' is a program I designed that will send email via the command line
     GNUPG to encrypt and sign your e-mails, so you decide to do so...
     You can get GNUPG at: http://www.gnupg.org
 
+Q: How do I checkout the latest source so I can help?
 
-Q: How do I compile and Install this damn thing?
+A: eMail is now hosted on github. Make sure you get both the eMail source and
+   dlib source and put the dlib source inside of the email source.  For example:
 
-A:  Good question, I mean if I weren't to tell you how, you may 
-    actually have to go figure it out on your own... Heaven forbid...
+     git clone git@github.com:deanproxy/eMail.git
+	 cd eMail
+	 git clone git@github.com:deanproxy/dlib.git
 
-    Anyway, just do this:
+Q: How do I compile and Install this thing?
+
+A: Just do this:
     
     ./configure
     make
-    su -c 'make install'
-
+    make install # as root
 
 Q: Where is it installed?
 
@@ -212,22 +216,14 @@ A:  Yes! Email does SMTP AUTH.  You will need to set a few options in the email.
 
 Q: Can I join the development team?
 
-A:  Yes, send an email at http://www.cleancode.org/projects/email
-
-
-Q: What Music did you listen to while writing it?
-
-A:  Mainly I listen to trance, house, jungle... Sometimes some radiohead
-    or even some Depeche Mode.  Sometimes I'm guilty of listening to country
-    music and even a new pop song... Just don't tell anyone.
-
+A:  Yes, send an email at http://www.cleancode.org/projects/email and ask how, or just 
+    clone it with git (see above on how to do that) and start coding and committing!
 
 Q: Why email?
 
-A:  Because 'mailx' won't send to remote smtp servers and I remove sendmail everytime
-    I install Slackware!!  I needed something that would communicate with Remote
-    smtp servers and encrypt my messages on the fly instead of taking numorous steps to 
-    do so.
+A:  Because 'mailx' won't send to remote smtp servers and I didn't have access to sendmail.
+    I needed something that would communicate with Remote smtp servers and encrypt my messages 
+	on the fly instead of taking numerous steps to do so.
 
 Q: What does 'email' stand for?
 
@@ -247,6 +243,6 @@ That's about it so far.
 I hope you like the program 'email'.
 
 If you have any questions, bugs, or concerns email us at:
-http://email.cleancode.org/?pid=contact
+http://www.cleancode.org/projects/email/contact
 
 Happy mailing!
