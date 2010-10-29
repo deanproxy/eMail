@@ -4,15 +4,13 @@ make_dist_file=`pwd`
 make_dist_file="$make_dist_file/make_dist.out"
 
 if [ -z $1 ]; then
-    echo $0 email_version cvs_branch
+    echo $0 email_version
     exit;
 fi
 if [ -z $2 ]; then
     echo $0 email_version cvs_branch
     exit;
 fi
-
-branch="$2"
 
 # Check files and make sure we have everyone ready.
 if [ ! -f configure.in.dist ]
@@ -42,10 +40,8 @@ autoheader
 autoconf
 cd ..
 
-# Build svn command
-cmd="svn export -q http://svn.cleancode.org/svn/email/${branch} email-${VERSION}"
+cmd="git clone http://github.com/deanproxy/eMail.git email-${VERSION}"
 
-# Make a temporary directory and cvs export the HEAD
 printf "\rDoing a '${cmd}'...            "
 mkdir "$HOME"/temp
 cd "$HOME"/temp
@@ -53,7 +49,7 @@ $cmd
 
 # Get dlib
 cd email-${VERSION}
-svn export -q http://svn.cleancode.org/svn/dlib
+git clone http://github.com/deanproxy/dlib.git
 
 # Fix VERSION and configure.ac script in release dir
 printf "\rParsing files and creating ./configure...      "
