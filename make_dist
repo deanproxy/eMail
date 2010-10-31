@@ -60,8 +60,10 @@ fi
 printf "\rTaring and gziping up email-$VERSION...        "
 tar -cf dist/email-"$VERSION".tar email-"$VERSION"
 cd dist
-gzip email-${VERSION}.tar
+gzip -c email-${VERSION}.tar > email-${VERSION}.tar.gz
 bzip2 email-${VERSION}.tar
 rm -f "$make_dist_file"
+cd ..
+rm -rf email-${VERSION}
 
-printf "\rDistribution file is at $HOME/email-$VERSION.tar.gz\n"
+printf "\rDistribution file is at dist/email-$VERSION.tar.gz\n"
