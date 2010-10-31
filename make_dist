@@ -7,10 +7,6 @@ if [ -z $1 ]; then
     echo $0 email_version
     exit;
 fi
-if [ -z $2 ]; then
-    echo $0 email_version cvs_branch
-    exit;
-fi
 
 # Check files and make sure we have everyone ready.
 if [ ! -f configure.in.dist ]
@@ -29,27 +25,21 @@ sed -f "$make_dist_file" configure.in.dist > configure.in
 echo "$VERSION" > VERSION
 autoheader
 autoconf > /dev/null 2>&1
-if [ "$2" = "-b" ]
-then
-    rm -f "$make_dist_file"
-    echo
-    exit;
-fi
 cd dlib
 autoheader
 autoconf
 cd ..
 
-cmd="git clone http://github.com/deanproxy/eMail.git email-${VERSION}"
+mkdir -p "email-${VERSION}/dlib"
+cmd=`git archive master | tar -x -C email-${VERSION}`
 
-printf "\rDoing a '${cmd}'...            "
-mkdir "$HOME"/temp
-cd "$HOME"/temp
-$cmd
+printf "\rDoing a git...            "
+$cmd > /dev/null
 
 # Get dlib
-cd email-${VERSION}
-git clone http://github.com/deanproxy/dlib.git
+cd dlib
+git archive master | tar -x -C ../email-${VERSION}/dlib > /dev/null
+cd ../email-${VERSION}
 
 # Fix VERSION and configure.ac script in release dir
 printf "\rParsing files and creating ./configure...      "
@@ -64,10 +54,14 @@ cd ..
 
 # Tar and gzip distrobution file
 cd ..
+if [ ! -d dist ]; then
+	mkdir dist
+fi
 printf "\rTaring and gziping up email-$VERSION...        "
-tar -czf email-"$VERSION".tar.gz email-"$VERSION"
-mv $HOME/temp/email-"$VERSION".tar.gz $HOME
-rm -rf $HOME/temp
+tar -cf dist/email-"$VERSION".tar email-"$VERSION"
+cd dist
+gzip email-${VERSION}.tar
+bzip2 email-${VERSION}.tar
 rm -f "$make_dist_file"
 
 printf "\rDistribution file is at $HOME/email-$VERSION.tar.gz\n"
