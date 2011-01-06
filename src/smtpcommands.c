@@ -92,6 +92,7 @@ readResponse(dsocket *sd, dstrbuf *buf)
 	struct timeval tv;
 	fd_set rfds;
 	char *timeout = getConfValue("TIMEOUT");
+	int readsize = 0;
 
 	FD_ZERO(&rfds);
 	FD_SET(dnetGetSock(sd), &rfds);
@@ -105,8 +106,8 @@ readResponse(dsocket *sd, dstrbuf *buf)
 	if (FD_ISSET(dnetGetSock(sd), &rfds)) {
 		do {
 			dsbClear(tmpbuf);
-			dnetReadline(sd, tmpbuf);
-			if (dnetErr(sd)) {
+			readsize = dnetReadline(sd, tmpbuf);
+			if ((dnetErr(sd)) || (readsize <= 0)) {
 				smtpSetErr("Lost connection with SMTP server");
 				retval = ERROR;
 				break;
