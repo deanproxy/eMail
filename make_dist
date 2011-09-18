@@ -8,20 +8,9 @@ if [ -z $1 ]; then
     exit;
 fi
 
-# Check files and make sure we have everyone ready.
-if [ ! -f configure.in.dist ]
-then
-    echo "No configure.in available..."
-    exit -1
-fi
-
-DATE="`date +%x-%I:%M:%S%p_%Z`"
 VERSION="$1"
 
 printf "\rSetting up configure scripts and version info..."
-echo "s!@date@!$DATE!" > "$make_dist_file"
-echo "s!@ver@!$VERSION!" >> "$make_dist_file"
-sed -f "$make_dist_file" configure.in.dist > configure.in
 echo "$VERSION" > VERSION
 autoheader
 autoconf > /dev/null 2>&1
@@ -43,11 +32,19 @@ cd ../email-${VERSION}
 
 # Fix VERSION and configure.ac script in release dir
 printf "\rParsing files and creating ./configure...      "
-sed -f "$make_dist_file" configure.in.dist > configure.in
+if [ ! -f configure.in ]; then
+	echo
+	echo "Something is wrong... configure.in does not exist out of the repository email."
+	exit 1
+fi
 autoheader
 autoconf > /dev/null 2>&1
-rm -f configure.in.dist make_dist
 cd dlib
+if [ ! -f configure.in ]; then
+	echo
+	echo "Something is wrong... configure.in does not exist out of the repository for dlib."
+	exit 1
+fi
 autoheader
 autoconf
 cd ..
@@ -62,7 +59,6 @@ tar -cf dist/email-"$VERSION".tar email-"$VERSION"
 cd dist
 gzip -c email-${VERSION}.tar > email-${VERSION}.tar.gz
 bzip2 email-${VERSION}.tar
-rm -f "$make_dist_file"
 cd ..
 rm -rf email-${VERSION}
 

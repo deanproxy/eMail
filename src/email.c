@@ -277,8 +277,7 @@ main(int argc, char **argv)
 			return (0);
 			break;
 		case 'v':
-			printf("email - By: Dean Jones. Email: deanjones@cleancode.org.\n"
-				"Version %s - Date %s \n", EMAIL_VERSION, COMPILE_DATE);
+			printf("email - By Dean Jones; Version %s\n", EMAIL_VERSION);
 			dhDestroy(table);
 			exit(EXIT_SUCCESS);
 			break;
