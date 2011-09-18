@@ -4,21 +4,17 @@ First thing is first.  This file will take place as sort of a
 FAQ sheet, because I already know what questions will be asked.
 So read along.
 
+Q: How do I checkout the source from github and get everything I need?
+
+A: Type the following in a shell:
+   > git clone --recursive git@github.com:deanproxy/eMail.git
+
 Q: What is 'email' ?
 
 A:  'email' is a program I designed that will send email via the command line
     to remote smtp servers or use 'sendmail' internally, and fully interact with
     GNUPG to encrypt and sign your e-mails, so you decide to do so...
     You can get GNUPG at: http://www.gnupg.org
-
-Q: How do I checkout the latest source so I can help?
-
-A: eMail is now hosted on github. Make sure you get both the eMail source and
-   dlib source and put the dlib source inside of the email source.  For example:
-
-     git clone git@github.com:deanproxy/eMail.git
-     cd eMail
-     git clone git@github.com:deanproxy/dlib.git
 
 Q: How do I compile and Install this thing?
 
