@@ -1,0 +1,3 @@
+[submodule "dlib"]
+	path = dlib
+	url = git@github.com:deanproxy/dlib.git
