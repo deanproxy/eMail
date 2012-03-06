@@ -79,19 +79,22 @@ printMimeHeaders(const char *b, dstrbuf *msg, CharSetType charset)
 	} else if (Mopts.attach) {
 		dsbPrintf(msg, "Content-Type: multipart/mixed; boundary=\"%s\"\r\n", b);
 	} else {
+        if (Mopts.html) {
+			dsbPrintf(msg, "Content-Type: text/html");
+        } else {
+			dsbPrintf(msg, "Content-Type: text/plain");
+        }
 		if (charset == IS_UTF8 || charset == IS_PARTIAL_UTF8) {
-			dsbPrintf(msg, "Content-Type: text/plain; charset=utf-8\r\n");
+			dsbPrintf(msg, "; charset=utf-8\r\n");
 			if (charset == IS_PARTIAL_UTF8) {
 				dsbPrintf(msg, "Content-Transfer-Encoding: quoted-printable\r\n");
 			} else {
 				dsbPrintf(msg, "Content-Transfer-Encoding: base64\r\n");
 			}
 			dsbPrintf(msg, "Content-Disposition: inline\r\n");
-		} else if (Mopts.html) {
-			dsbPrintf(msg, "Content-Type: text/html\r\n");
 		} else {
-			dsbPrintf(msg, "Content-Type: text/plain\r\n");
-		}
+			dsbPrintf(msg, "\r\n");
+        }
 	}
 }
 
