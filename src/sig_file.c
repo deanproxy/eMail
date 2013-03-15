@@ -171,9 +171,9 @@ appendFortune(dstrbuf *app)
 
 	/* set IFS and PATH environment variable for security reasons */
 	putenv("IFS=' '");
-	putenv("PATH='/usr/bin:/usr/local/bin:/usr/games'");
-	if (!(fortune = popen("/usr/games/fortune", "r"))) {
-		warning("Could not exectute /usr/games/fortune");
+	putenv("PATH=/usr/bin:/usr/local/bin:/usr/games");
+	if (!(fortune = popen("fortune", "r"))) {
+		warning("Could not exectute fortune");
 		dsbPrintf(app, "Unspecified Fortune");
 		return;
 	}
@@ -191,8 +191,8 @@ appendFortune(dstrbuf *app)
 
 
 /**
- * AppendSig will append the signature file and take into 
- * account the wildcards allowed to be specified and transform 
+ * AppendSig will append the signature file and take into
+ * account the wildcards allowed to be specified and transform
  * them to the correct modules.
 **/
 int
