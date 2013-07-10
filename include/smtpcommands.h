@@ -6,6 +6,7 @@
 char *smtpGetErr(void);
 int smtpInitAuth(dsocket *sd, const char *auth, const char *user, const char *pass);
 int smtpInit(dsocket *sd, const char *domain);
+int smtpInitAfterTLS(dsocket *sd, const char *domain);
 int smtpStartTls(dsocket *sd);
 int smtpSetMailFrom(dsocket *sd, const char *from);
 int smtpSetRcpt(dsocket *sd, const char *to);

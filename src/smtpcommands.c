@@ -184,6 +184,31 @@ writeResponse(dsocket *sd, char *line, ...)
 }
 
 static int
+init(dsocket *sd, const char *domain)
+{
+	int retval;
+	dstrbuf *rbuf = DSB_NEW;
+
+	/* This initiates the connection, so let's read the header first */
+	retval = readResponse(sd, rbuf);
+	if (retval != 220) {
+		if (retval != ERROR) {
+			smtpSetErr(rbuf->str);
+		}
+		goto end;
+	}
+
+#ifdef DEBUG_SMTP
+	printf("\r\n<-- %s", rbuf->str);
+	fflush(stdout);
+#endif
+
+end:
+	dsbDestroy(rbuf);
+	return retval;
+}
+
+static int
 helo(dsocket *sd, const char *domain)
 {
 	int retval;
@@ -229,20 +254,6 @@ ehlo(dsocket *sd, const char *domain)
 {
 	int retval;
 	dstrbuf *rbuf = DSB_NEW;
-
-	/* This initiates the connection, so let's read the header first */
-	retval = readResponse(sd, rbuf);
-	if (retval != 220) {
-		if (retval != ERROR) {
-			smtpSetErr(rbuf->str);
-		}
-		goto end;
-	}
-
-#ifdef DEBUG_SMTP
-	printf("\r\n<-- %s", rbuf->str);
-	fflush(stdout);
-#endif
 
 	if (writeResponse(sd, "EHLO %s\r\n", domain) < 0) {
 		smtpSetErr("Lost connection to SMTP server");
@@ -653,6 +664,12 @@ smtpInit(dsocket *sd, const char *domain)
 {
 	int retval;
 
+	printProgress("Init connection...");
+	retval = init(sd, domain);
+	if (retval == ERROR) {
+		return retval;
+	}
+
 	printProgress("Greeting the SMTP server...");
 	retval = ehlo(sd, domain);
 	if (retval == ERROR) {
@@ -664,6 +681,17 @@ smtpInit(dsocket *sd, const char *domain)
 		rset(sd);
 		retval = helo(sd, domain);
 	}
+
+	return retval;
+}
+
+int
+smtpInitAfterTLS(dsocket *sd, const char *domain)
+{
+	int retval;
+
+	printProgress("Greeting the SMTP server...");
+	retval = ehlo(sd, domain);
 
 	return retval;
 }
