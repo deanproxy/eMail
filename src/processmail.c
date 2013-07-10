@@ -174,7 +174,7 @@ processRemote(const char *smtp_serv, int smtp_port, dstrbuf *msg)
 		if (smtpStartTls(sd) != ERROR) {
 			dnetUseTls(sd);
 			dnetVerifyCert(sd);
-			if (smtpInit(sd, nodename) == ERROR) {
+			if (smtpInitAfterTLS(sd, nodename) == ERROR) {
 				printSmtpError();
 				goto end;
 			}
