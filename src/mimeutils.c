@@ -336,6 +336,14 @@ mimeQpEncodeString(const u_char *str, bool wrap)
 			dsbPrintf(out, "\r\n");
 			line_len = 0;
 			break;
+		case '.':
+			if (line_len == 0) {
+				dsbPrintf(out, "..");
+				line_len = 2;
+			} else {
+				qpStdout('.', &line_len, out, wrap);
+			}
+			break;
 		default:
 			if (qpIsEncodable(*str)) {
 				qpEncout(*str, &line_len, out, wrap);
