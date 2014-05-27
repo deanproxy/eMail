@@ -354,6 +354,7 @@ makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 			dsbCat(enc, in->str);
 		}
 	}
+
 	dsbPrintf(out, "%s\r\n", enc->str);
 	if (Mopts.attach) {
 		if (attachFiles(border, out) == ERROR) {
@@ -505,7 +506,8 @@ createPlainEmail(dstrbuf *msg)
 void
 createMail(void)
 {
-	dstrbuf *msg=NULL;
+	dstrbuf *msg=NULL, *formatted=NULL;
+    char *ptr=NULL;
 	char subject[MAXBUF]={0};
 
 	/**
@@ -540,19 +542,31 @@ createMail(void)
 		}
 	}
 
+    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
+    formatted = DSB_NEW;
+    char previous='\0';
+    for (ptr = msg->str; ptr && *ptr != '\0'; previous=*ptr, ptr++) {
+        dsbCatChar(formatted, *ptr);
+        /* If we have a dot on a line of its own. */
+        if (previous == '\n' && *ptr == '.' && *(ptr+1) != '\0' && (*(ptr+1) == '\n' || *(ptr+1) == '\r')) {
+            dsbCatChar(formatted, '.');
+        }
+    }
+
+
 	/* Create a message according to the type */
 	if (Mopts.gpg_opts) {
-		global_msg = createGpgEmail(msg, Mopts.gpg_opts);
+		global_msg = createGpgEmail(formatted, Mopts.gpg_opts);
 	} else {
-		global_msg = createPlainEmail(msg);
-	}
-
-	if (!global_msg) {
-		dsbDestroy(msg);
-		properExit(ERROR);
+		global_msg = createPlainEmail(formatted);
 	}
 
 	dsbDestroy(msg);
+    dsbDestroy(formatted);
+
+	if (!global_msg) {
+		properExit(ERROR);
+    }
 	sendmail(global_msg);
 }
 
