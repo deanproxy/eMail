@@ -79,5 +79,5 @@ if test "$use_ssl" = "no"; then
 	args="--without-ssl"
 fi
 cd dlib
-./configure $args
+./configure $args --host=$host_alias
 cd ..

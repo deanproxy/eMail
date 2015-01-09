@@ -1,2 +1,11 @@
 autom4te.cache
 dist
+*.o
+*.status
+*.log
+Makefile
+email.1
+email.help
+include/config.h
+src/Makefile
+src/email
