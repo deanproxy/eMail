@@ -63,7 +63,7 @@ help section.
 
 The Help is not statically programmed into email.
 Instead it is a file in email's home directory called
-'email.help'.  It is updated regularly and will always
+&'email.help'.  It is updated regularly and will always
 be rewritten with every release of email.
 
 .TP
@@ -91,7 +91,8 @@ subjects are allowed.
 .B \-\-encrypt | \-encrypt | \-e  
 This options allows you to encrypt your email message
 using 'gpg'. GPG can be obtained by going to:
-.URL http://www.gnupg.org.
+.UR http://www.gnupg.org
+.UE .
 When this option is specified, it will get the first
 recipient from the recipient list and it will encrypt
 the message using their key.  This key MUST be present
@@ -348,7 +349,7 @@ this variable is not set, it will default to vi.
 TMPDIR can be set to specify a temporary directory to
 place your temp files while email is working.  This is
 analogous to the TEMP_DIR variable in email.conf.  
-'email' will check TEMP_DIR first, then check your 
+&'email' will check TEMP_DIR first, then check your 
 environment variable TMPDIR for a temporary directory.
 If neither contains a value, email defaults to /tmp.
 
