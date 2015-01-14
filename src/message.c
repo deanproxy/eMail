@@ -542,16 +542,17 @@ createMail(void)
 		}
 	}
 
-    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
     formatted = DSB_NEW;
+    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
     char previous='\0';
     for (ptr = msg->str; ptr && *ptr != '\0'; previous=*ptr, ptr++) {
         dsbCatChar(formatted, *ptr);
-        /* If we have a dot on a line of its own. */
-        if (previous == '\n' && *ptr == '.' && *(ptr+1) != '\0' && (*(ptr+1) == '\n' || *(ptr+1) == '\r')) {
+        /* If we have a dot starting on a newline. */
+        if ((previous == '\n' || previous == '\r') && *ptr == '.') {
             dsbCatChar(formatted, '.');
         }
     }
+
 
 
 	/* Create a message according to the type */

@@ -812,6 +812,9 @@ smtpSendData(dsocket *sd, const char *data, size_t len)
 
 	/* Write the data to the socket. */
 	dnetWrite(sd, data, len);
+#ifdef DEBUG_SMTP_DATA
+    printf("\n%s\n", data);
+#endif
 	if (dnetErr(sd)) {
 		smtpSetErr("Error writing to socket.");
 		retval = ERROR;
