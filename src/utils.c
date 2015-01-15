@@ -266,26 +266,6 @@ copyfile(const char *from, const char *to)
 }
 
 /**
- * checks to see if the TEMP_FILE is around... if it is
- * it will move it to the users home directory as dead.letter.
-**/
-static void
-deadLetter()
-{
-	dstrbuf *path = expandPath("~/dead.letter");
-	FILE *out = fopen(path->str, "w");
-
-	if (!out || !global_msg) {
-		warning("Could not save dead letter to %s", path->str);
-	} else {
-		fwrite(global_msg->str, sizeof(char), global_msg->len, out);
-	}
-	dsbDestroy(path);
-}
-
-
-
-/**
  * Gererate a string of random characters
 **/
 static const char letters[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz" 
@@ -351,11 +331,6 @@ getFirstEmail(void)
 void
 properExit(int sig)
 {
-	if (sig != 0 && global_msg) {
-		deadLetter();
-	}
-	dsbDestroy(global_msg);
-
 	/* Free lists */
 	if (Mopts.attach) {
 		dlDestroy(Mopts.attach);

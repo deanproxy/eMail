@@ -212,7 +212,6 @@ main(int argc, char **argv)
 
 	/* Set certian global options to NULL */
 	conf_file = NULL;
-	global_msg = NULL;
 	memset(&Mopts, 0, sizeof(struct mailer_options));
 	Mopts.encoding = true;
 

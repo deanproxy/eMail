@@ -58,6 +58,27 @@
 #include "error.h"
 
 /**
+ * checks to see if the TEMP_FILE is around... if it is
+ * it will move it to the users home directory as dead.letter.
+**/
+static void
+deadLetter(dstrbuf *msg)
+{
+	dstrbuf *path = expandPath("~/dead.letter");
+	FILE *out = fopen(path->str, "w");
+
+	if (!out || !msg) {
+		warning("Could not save dead letter to %s", path->str);
+	} else {
+		fwrite(msg->str, sizeof(char), msg->len, out);
+	}
+	dsbDestroy(path);
+}
+
+
+
+
+/**
  * All functions below are pretty self explanitory.  
  * They basically just preform some simple header printing 
  * for our email 'message'.  I'm not doing to comment every 
@@ -322,7 +343,9 @@ attachFiles(const char *boundary, dstrbuf *out)
 static int
 makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 {
+    char *ptr=NULL;
 	dstrbuf *enc=NULL;
+
 	if (Mopts.attach) {
 		dsbPrintf(out, "--%s\r\n", border);
 		if (charset == IS_UTF8 || charset == IS_PARTIAL_UTF8) {
@@ -355,14 +378,27 @@ makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 		}
 	}
 
-	dsbPrintf(out, "%s\r\n", enc->str);
+    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
+    dstrbuf *formatted = DSB_NEW;
+    char previous='\0';
+    for (ptr = enc->str; ptr && *ptr != '\0'; previous=*ptr, ptr++) {
+        dsbCatChar(formatted, *ptr);
+        /* If we have a dot starting on a newline. */
+        if ((previous == '\n' || previous == '\r') && *ptr == '.') {
+            dsbCatChar(formatted, '.');
+        }
+    }
+
+    dsbDestroy(enc);
+	dsbPrintf(out, "%s\r\n", formatted->str);
+
 	if (Mopts.attach) {
 		if (attachFiles(border, out) == ERROR) {
 			return ERROR;
 		}
 		dsbPrintf(out, "\r\n\r\n--%s--\r\n", border);
 	}
-	dsbDestroy(enc);
+	dsbDestroy(formatted);
 	return 0;
 }
 
@@ -375,6 +411,7 @@ makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 static int
 makeGpgMessage(dstrbuf *in, dstrbuf *out, const char *border)
 {
+    char *ptr=NULL;
 	dstrbuf *qp=NULL;
 
 	assert(in != NULL);
@@ -395,8 +432,21 @@ makeGpgMessage(dstrbuf *in, dstrbuf *out, const char *border)
 
 	dsbPrintf(out, "Content-Transfer-Encoding: quoted-printable\r\n\r\n");
 	qp = mimeQpEncodeString((u_char *)in->str, true);
-	dsbnCat(out, qp->str, qp->len);
+    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
+    dstrbuf *formatted = DSB_NEW;
+    char previous='\0';
+    for (ptr = qp->str; ptr && *ptr != '\0'; previous=*ptr, ptr++) {
+        dsbCatChar(formatted, *ptr);
+        /* If we have a dot starting on a newline. */
+        if ((previous == '\n' || previous == '\r') && *ptr == '.') {
+            dsbCatChar(formatted, '.');
+        }
+    }
+
 	dsbDestroy(qp);
+	dsbnCat(out, formatted->str, formatted->len);
+    dsbDestroy(formatted);
+
 	if (Mopts.attach) {
 		attachFiles(border, out);
 		dsbPrintf(out, "\r\n--%s--\r\n", border);
@@ -506,8 +556,7 @@ createPlainEmail(dstrbuf *msg)
 void
 createMail(void)
 {
-	dstrbuf *msg=NULL, *formatted=NULL;
-    char *ptr=NULL;
+	dstrbuf *msg=NULL, *full_msg=NULL;
 	char subject[MAXBUF]={0};
 
 	/**
@@ -542,32 +591,22 @@ createMail(void)
 		}
 	}
 
-    formatted = DSB_NEW;
-    /* Fix single dot on it's on line so we don't terminate the message prematurely. */
-    char previous='\0';
-    for (ptr = msg->str; ptr && *ptr != '\0'; previous=*ptr, ptr++) {
-        dsbCatChar(formatted, *ptr);
-        /* If we have a dot starting on a newline. */
-        if ((previous == '\n' || previous == '\r') && *ptr == '.') {
-            dsbCatChar(formatted, '.');
-        }
-    }
-
-
-
 	/* Create a message according to the type */
 	if (Mopts.gpg_opts) {
-		global_msg = createGpgEmail(formatted, Mopts.gpg_opts);
+		full_msg = createGpgEmail(msg, Mopts.gpg_opts);
 	} else {
-		global_msg = createPlainEmail(formatted);
+		full_msg = createPlainEmail(msg);
 	}
 
-	dsbDestroy(msg);
-    dsbDestroy(formatted);
-
-	if (!global_msg) {
+	if (!full_msg) {
+        deadLetter(msg);
+        dsbDestroy(msg);
 		properExit(ERROR);
     }
-	sendmail(global_msg);
+
+    dsbDestroy(msg);
+
+	sendmail(full_msg);
+	dsbDestroy(full_msg);
 }
 

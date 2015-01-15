@@ -184,7 +184,7 @@ writeResponse(dsocket *sd, char *line, ...)
 }
 
 static int
-init(dsocket *sd, const char *domain)
+init(dsocket *sd)
 {
 	int retval;
 	dstrbuf *rbuf = DSB_NEW;
@@ -665,7 +665,7 @@ smtpInit(dsocket *sd, const char *domain)
 	int retval;
 
 	printProgress("Init connection...");
-	retval = init(sd, domain);
+	retval = init(sd);
 	if (retval == ERROR) {
 		return retval;
 	}

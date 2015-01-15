@@ -50,7 +50,8 @@ saveSentEmail(dstrbuf *msg)
 
 	save_file = getConfValue("SAVE_SENT_MAIL");
 	if (!save_file) {
-		return ERROR;
+        /* If they didn't specify a save file, don't worry. */
+		return SUCCESS;
 	}
 
 	path = expandPath(save_file);
@@ -98,7 +99,7 @@ sendmail(dstrbuf *mail)
 	}
 
 	if (saveSentEmail(mail) == ERROR) {
-		return ERROR;
+        warning("Could not save sent message.");
 	}
 	return TRUE;
 }

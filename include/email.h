@@ -63,7 +63,6 @@ typedef enum { GPG_SIG=0x01, GPG_ENC=0x02 } GpgCallType;
 /* Globally defined vars */
 dhash table;
 char *conf_file;
-dstrbuf *global_msg;
 
 struct mailer_options {
 	bool verbose;
