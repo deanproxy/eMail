@@ -4,7 +4,7 @@
 First thing is first.  This file will take place as sort of a FAQ sheet, because I already know what questions will be asked.
 
 
-###Q: How do I checkout the source from github and get everything I need?
+####Q: How do I checkout the source from github and get everything I need?
 
 
 A: Type the following in a shell:
@@ -13,7 +13,7 @@ A: Type the following in a shell:
 
 ---
 
-###Q: What is `email` ?
+####Q: What is `email` ?
 
 
 A:  `email` is a program I designed that will send email via the command line
@@ -23,18 +23,18 @@ A:  `email` is a program I designed that will send email via the command line
 
 ---
 
-###Q: How do I compile and Install this thing?
+####Q: How do I compile and Install this thing?
 
 
-A: Just do this:
+A: Just do this as root:
     
     ./configure
     make
-    make install # as root
+    make install
 
 ---
 
-###Q: Where is it installed?
+####Q: Where is it installed?
 
 
 A: the executable is called 'email' and is installed in a directory that is under the prefix or bindir specified during the `./configure` of email. If you choose to specify a prefix during configure, it will go under `$bindir`. Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir` then the binary will be put in `$bindir`.
