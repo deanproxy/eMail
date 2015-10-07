@@ -1,11 +1,11 @@
 
 ##This will explain the email program as well as it can.  
 
-###First thing is first.  This file will take place as sort of a FAQ sheet, because I already know what questions will be asked.
+First thing is first.  This file will take place as sort of a FAQ sheet, because I already know what questions will be asked.
 
 
-Q: How do I checkout the source from github and get everything I need?
-===
+###Q: How do I checkout the source from github and get everything I need?
+
 
 A: Type the following in a shell:
     
@@ -13,8 +13,8 @@ A: Type the following in a shell:
 
 ---
 
-Q: What is `email` ?
-===
+###Q: What is `email` ?
+
 
 A:  `email` is a program I designed that will send email via the command line
     to remote smtp servers or use 'sendmail' internally, and fully interact with
@@ -23,8 +23,8 @@ A:  `email` is a program I designed that will send email via the command line
 
 ---
 
-Q: How do I compile and Install this thing?
-===
+###Q: How do I compile and Install this thing?
+
 
 A: Just do this:
     
@@ -34,8 +34,8 @@ A: Just do this:
 
 ---
 
-Q: Where is it installed?
-===
+###Q: Where is it installed?
+
 
 A: the executable is called 'email' and is installed in a directory that is under the prefix or bindir specified during the `./configure` of email. If you choose to specify a prefix during configure, it will go under `$bindir`. Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir` then the binary will be put in `$bindir`.
 
@@ -43,28 +43,43 @@ If you do not specify a directory prefix during configure, then it will go under
 
 ---
 
-Q: How do I make your freakin' program work?
-===
+###Q: How do I make your freakin' program work?
+
 
 A: Well, first thing you should do, is configure this email client. You will have the configuration file in `/usr/local/etc/email/email.conf` Some less important options are not set `(address_book, save_sent_mail, temp_dir reply_to, signature_file, signature_divide)` but you can easily set these by hand and they are not needed to properly run email.
 
 You will see it has a few options you must set to your environment.
 
 > `SMTP_SERVER:`	 Please specify your smtp server name, or IP address here
+
 > `SMTP_PORT:`   	 Please specify your smtp servers port number for use
+
 > `MY_NAME:`     	 Please specify your Name here
+
 > `MY_EMAIL:`        Please specify your email address here
+
 > `REPLY_TO:`        Specify a seperate reply to address here
+
 > `SIGNATURE_FILE:`  Specify your signature file
+
 > `ADDRESS_BOOK:`	 Where to find your address book file
+
 > `SAVE_SENT_MAIL:`  What directory to save the email.sent file to
+
 > `TEMP_DIR:`        Specify where to store temporary files
+
 > `GPG_BIN:`         Specify where the gpg binary is located.
+
 > `GPG_PASS:`        Optional passphrase for gpg.
+
 > `SMTP_AUTH:`       LOGIN or PLAIN are supported SMTP AUTH types
+
 > `SMTP_AUTH_USER:`  Your SMTP AUTH username
+
 > `SMTP_AUTH_PASS:`  Your SMTP AUTH Password
+
 > `USE_TLS:`         Boolean (true/false) to use TLS/SSL
+
 > `VCARD:`           Specify a vcard to attach to each message
 
    `SMTP_SERVER` can be either a remote <strong>SMTP</strong>strong> servers fully qualified domain name, or
