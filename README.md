@@ -1,15 +1,16 @@
 
 ##This will explain the email program as well as it can.  
 
-###First thing is first.  This file will take place as sort of a 
-FAQ sheet, because I already know what questions will be asked.
+###First thing is first.  This file will take place as sort of a FAQ sheet, because I already know what questions will be asked.
 
 
 Q: How do I checkout the source from github and get everything I need?
 
 A: Type the following in a shell:
+    
+        git clone --recursive git@github.com:deanproxy/eMail.git
 
-   git clone --recursive git@github.com:deanproxy/eMail.git
+---
 
 Q: What is 'email' ?
 
@@ -17,6 +18,8 @@ A:  'email' is a program I designed that will send email via the command line
     to remote smtp servers or use 'sendmail' internally, and fully interact with
     GNUPG to encrypt and sign your e-mails, so you decide to do so...
     You can get GNUPG at: http://www.gnupg.org
+
+---
 
 Q: How do I compile and Install this thing?
 
@@ -26,50 +29,54 @@ A: Just do this:
     make
     make install # as root
 
+---
+
 Q: Where is it installed?
 
 A:  the executable is called 'email' and is installed in a directory that
-    is under the prefix or bindir specified during the ./configure of email.  
+    is under the prefix or bindir specified during the `./configure` of email.  
     If you choose to specify a prefix during configure, it will go under $bindir
-    Which, by default, is an offset of $prefix/bin.  If you specify --bindir
-    then the binary will be put in $bindir.
+    Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir`
+    then the binary will be put in `$bindir`.
 
     If you do not specify a directory prefix during configure, then it will 
-    go under /usr/local/bin/email.  The configuration files are installed by
-    default in /usr/local/etc/email.  However, if you specify the --sysconfdir
-    option during ./configure, then the configuration files will go in $sysconfdir.
+    go under `/usr/local/bin/email`.  The configuration files are installed by
+    default in `/usr/local/etc/email`.  However, if you specify the `--sysconfdir`
+    option during ./configure, then the configuration files will go in `$sysconfdir`.
     
-    Please view ./configure --help
+    Please view `./configure --help`
+
+---
 
 Q: How do I make your freakin' program work?
 
 A:  Well, first thing you should do, is configure this email client.
-    You will have the configuration file in /usr/local/etc/email/email.conf
-    Some less important options are not set (address_book, save_sent_mail, 
-    temp_dir reply_to, signature_file, signature_divide) but you can easily set 
+    You will have the configuration file in `/usr/local/etc/email/email.conf`
+    Some less important options are not set `(address_book, save_sent_mail, 
+    temp_dir reply_to, signature_file, signature_divide)` but you can easily set 
     these by hand and they are not needed to properly run email.
 
     You will see it has a few options you must set to your environment.
 
-    1: SMTP_SERVER:	       Please specify your smtp server name, or IP address here
-    2: SMTP_PORT:    	   Please specify your smtp servers port number for use
-    3: MY_NAME       	   Please specify your Name here
-    4: MY_EMAIL:     	   Please specify your email address here
-    5: REPLY_TO:     	   Specify a seperate reply to address here
-    6: SIGNATURE_FILE:	   Specify your signature file
-    7: ADDRESS_BOOK:	   Where to find your address book file
-    8: SAVE_SENT_MAIL:     What directory to save the email.sent file to
-    9: TEMP_DIR:           Specify where to store temporary files
-   10: GPG_BIN:            Specify where the gpg binary is located.
-   11: GPG_PASS:           Optional passphrase for gpg.
-   12: SMTP_AUTH:          LOGIN or PLAIN are supported SMTP AUTH types
-   13: SMTP_AUTH_USER:     Your SMTP AUTH username
-   14: SMTP_AUTH_PASS:     Your SMTP AUTH Password
-   15: USE_TLS             Boolean (true/false) to use TLS/SSL
-   16: VCARD               Specify a vcard to attach to each message
+    1: `SMTP_SERVER:`	   Please specify your smtp server name, or IP address here
+    2: `SMTP_PORT:`   	   Please specify your smtp servers port number for use
+    3: `MY_NAME:`     	   Please specify your Name here
+    4: `MY_EMAIL:`     	   Please specify your email address here
+    5: `REPLY_TO:`     	   Specify a seperate reply to address here
+    6: `SIGNATURE_FILE:`   Specify your signature file
+    7: `ADDRESS_BOOK:`	   Where to find your address book file
+    8: `SAVE_SENT_MAIL:`   What directory to save the email.sent file to
+    9: `TEMP_DIR:`         Specify where to store temporary files
+   10: `GPG_BIN:`          Specify where the gpg binary is located.
+   11: `GPG_PASS:`         Optional passphrase for gpg.
+   12: `SMTP_AUTH:`        LOGIN or PLAIN are supported SMTP AUTH types
+   13: `SMTP_AUTH_USER:`   Your SMTP AUTH username
+   14: `SMTP_AUTH_PASS:`   Your SMTP AUTH Password
+   15: `USE_TLS:`          Boolean (true/false) to use TLS/SSL
+   16: `VCARD:`            Specify a vcard to attach to each message
 
-    SMTP_SERVER can be either a remote SMTP servers fully qualified domain name, or
-    an IP address.  You may also opt to use 'sendmail' internally instead of sending
+   `SMTP_SERVER` can be either a remote <strong>SMTP</strong>strong> servers fully qualified domain name, or
+    an IP address.  You may also opt to use `sendmail` internally instead of sending
     via remote SMTP servers.  To do this you just put the path to the sendmail
     binary and any options you would like to use with sendmail (Use -t) in the place
     of the smtp server name... HINT: If you would like to send emails to people on
@@ -77,47 +84,55 @@ A:  Well, first thing you should do, is configure this email client.
 
 
     When you are specifying file paths, you can use the tilde wildcard as you 
-    could in the shell to specify your home directory. Example: ~/.email.conf
-    would mean /home/user/.email.conf to the email program.
+    could in the shell to specify your home directory. Example: `~/.email.conf`
+    would mean `/home/user/.email.conf` to the email program.
 
-    Once you are done here, you can leave your email in /usr/local/etc/email/email.conf
-    or the directory you specified during the configure with --sysconfdir=...
-    for a global configuration, or in your local home directory as ~/.email.conf for
+    Once you are done here, you can leave your email in `/usr/local/etc/email/email.conf`
+    or the directory you specified during the configure with `--sysconfdir=...`
+    for a global configuration, or in your local home directory as `~/.email.conf` for
     a personal configuration.  Personal configs override global configs.  
 
-    You can get online help by using the --help option with email and specifying
-    the command line option you need help with.  Example: email --help encrypt
+    You can get online help by using the `--help` option with email and specifying
+    the command line option you need help with.  Example: `email --help encrypt`
 
-    If you use the -encrypt or -sign option, you MUST have GNUPG installed on your system.
+    If you use the `-encrypt` or `-sign` option, you MUST have GNUPG installed on your system.
     email uses gpg to encrypt the email to the FIRST email recipient
 
-    Example: email -s "This is the subject" -encrypt dean@somedomain.org
-    
-    in that example, I would be sending the email to dean@somedomain.org and gpg would
-    encrypt it with the key of dean@somedomain.org
+    Example: 
 
-    You can use -high-priority ( or -o ) to send your message in a high priority
-    matter.  In MS Outlook you will see a little '!' mark next to the letter so that
+            email -s "This is the subject" -encrypt dean@somedomain.org
+    
+    In that example, I would be sending the email to dean@somedomain.org and gpg would
+    encrypt it with the key of `dean@somedomain.org`
+
+    You can use `-high-priority` ( or -o ) to send your message in a high priority
+    matter.  In MS Outlook you will see a little `!` mark next to the letter so that
     the recipient will see that the message is high priority!
 
     You can send a message in one of two ways:
     The first way is to already have a message ready to send.  Say if I have a file named
-    "this.txt"  and I want to send it to 'dean@somedomain.org'.  I can redirect this file to
+    `this.txt`  and I want to send it to `dean@somedomain.org`.  I can redirect this file to
     the email program in one of two ways.  Example below:
 
-    cat this.txt | email -s "Sending this.txt to you" dean@somedomain.org
-    or
-    email -s "Sending this.txt to you" dean@somedomain.org < this.txt
+        cat this.txt | email -s "Sending this.txt to you" dean@somedomain.org
+
+    > or
+
+        email -s "Sending this.txt to you" dean@somedomain.org < this.txt
 
     If you want to create a message, you will need to do two things here.
     First set the environment variable "EDITOR" to your favorite editor. 
 
-    Example: 'export EDITOR=vi'
+    Example: 
+
+        export EDITOR=vi
 
     Please use your favorite editor in place of vi.
     Now all you have to do is execute the example below:
 
-    Example: email -s "Subject" dean@somedomain.org
+    Example:
+
+        email -s "Subject" dean@somedomain.org
 
     This will open up your favorite editor and let you write a email to dean@somedomain.org
     email will default to 'vi' if you do not set EDITOR.
@@ -147,6 +162,8 @@ A:  Well, first thing you should do, is configure this email client.
     Example: Add headers to the message
     email -s "New Message" --header "X-My-Header: Stuff" \
       --header "X-Another-Header: More Stuff" dean@somedomain.org
+
+---
 
 Q: Do you allow signatures?
 
