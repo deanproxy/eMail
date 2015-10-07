@@ -1,13 +1,15 @@
-Welcome to the README File.
-This will explain the email program as well as it can.  
-First thing is first.  This file will take place as sort of a 
+
+##This will explain the email program as well as it can.  
+
+###First thing is first.  This file will take place as sort of a 
 FAQ sheet, because I already know what questions will be asked.
-So read along.
+
 
 Q: How do I checkout the source from github and get everything I need?
 
 A: Type the following in a shell:
-   > git clone --recursive git@github.com:deanproxy/eMail.git
+
+   git clone --recursive git@github.com:deanproxy/eMail.git
 
 Q: What is 'email' ?
 
@@ -236,5 +238,3 @@ I hope you like the program 'email'.
 
 If you have any questions, bugs, or concerns email us at:
 http://www.cleancode.org/projects/email/contact
-
-Happy mailing!
