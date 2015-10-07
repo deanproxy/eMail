@@ -191,6 +191,8 @@ Your sig could look like this:
     This would end up looking like: 
 	This message was sent: Thu Dec 13 04:54:52 PM EST 2001
 
+---
+
 ####Q: How does the address Book work?
 
 A: Set up your email.conf file to point to your very own address book.
@@ -211,6 +213,7 @@ With groups, you can only use the Names of your single statements above... Forma
 
 See the `email.address.template` file for more information
 
+---
 
 ###Q: Do you allow attachments?
 
@@ -225,16 +228,20 @@ Example:
     # Multiple files
 
     email -s Attachments --attach file1 --attach file2 dean@somedomain.org
-      
+
+---      
 
 ####Q: Do you allow SMTP AUTH?
 
 A: Yes! Email does `SMTP AUTH`.  You will need to set a few options in the `email.conf` file.  `SMTP_AUTH, SMTP_AUTH_USER and SMTP_AUTH_PASS`.  If you want to know more about this, please view the email manual page 'man email'.
 
+---
 
 ####Q: Can I join the development team?
 
 A: Yes, send an email at http://www.cleancode.org/projects/email and ask how, or just clone it with git (see above on how to do that) and start coding and committing!
+
+---
 
 ####Q: Why email?
 
@@ -242,11 +249,15 @@ A: Because 'mailx' won't send to remote smtp servers and I didn't have access to
 
 I needed something that would communicate with Remote smtp servers and encrypt my messages on the fly instead of taking numerous steps to do so.
 
+---
+
 ####Q: What does 'email' stand for?
 
 A: Well, despite popular belief, it stands for "Encrypted Mail"  Not "Electronic Mail"
 
 My initial purpose was to make e-mail easier to send via command line and encrypt it with out taking all the damn steps 'mailx' makes you take!   Sorry mailx!  
+
+---
 
 ####Q: Who are the developers?
 
