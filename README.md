@@ -167,7 +167,7 @@ Example: Add headers to the message
 
 A: Yes, we do.
 
-Look in email.conf and edit the signature variables as needed.
+Look in `email.conf` and edit the signature variables as needed.
 
 If you're wondering what a signature divider is, it's the little thingy that divides your email message from the signature.
 
