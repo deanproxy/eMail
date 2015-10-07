@@ -33,18 +33,9 @@ A: Just do this:
 
 Q: Where is it installed?
 
-A:  the executable is called 'email' and is installed in a directory that
-    is under the prefix or bindir specified during the `./configure` of email.  
-    If you choose to specify a prefix during configure, it will go under $bindir
-    Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir`
-    then the binary will be put in `$bindir`.
+A: the executable is called 'email' and is installed in a directory that is under the prefix or bindir specified during the `./configure` of email. If you choose to specify a prefix during configure, it will go under `$bindir`. Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir` then the binary will be put in `$bindir`.
 
-    If you do not specify a directory prefix during configure, then it will 
-    go under `/usr/local/bin/email`.  The configuration files are installed by
-    default in `/usr/local/etc/email`.  However, if you specify the `--sysconfdir`
-    option during ./configure, then the configuration files will go in `$sysconfdir`.
-    
-    Please view `./configure --help`
+If you do not specify a directory prefix during configure, then it will go under `/usr/local/bin/email`. The configuration files are installed by default in `/usr/local/etc/email`.  However, if you specify the `--sysconfdir` option during ./configure, then the configuration files will go in `$sysconfdir`. Please view `./configure --help`
 
 ---
 
