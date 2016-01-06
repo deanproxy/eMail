@@ -349,7 +349,12 @@ makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 	if (Mopts.attach) {
 		dsbPrintf(out, "--%s\r\n", border);
 		if (charset == IS_UTF8 || charset == IS_PARTIAL_UTF8) {
-			dsbPrintf(out, "Content-Type: text/plain; charset=utf-8\r\n");
+			if (Mopts.html) {
+				dsbPrintf(out, "Content-Type: text/html; charset=utf-8\r\n");
+			}
+			else {
+				dsbPrintf(out, "Content-Type: text/plain; charset=utf-8\r\n");
+			}
 			if (IS_PARTIAL_UTF8) {
 				dsbPrintf(out, "Content-Transfer-Encoding: quoted-printable\r\n");
 				enc = mimeQpEncodeString((u_char *)in->str, true);
