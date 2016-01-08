@@ -351,8 +351,7 @@ makeMessage(dstrbuf *in, dstrbuf *out, const char *border, CharSetType charset)
 		if (charset == IS_UTF8 || charset == IS_PARTIAL_UTF8) {
 			if (Mopts.html) {
 				dsbPrintf(out, "Content-Type: text/html; charset=utf-8\r\n");
-			}
-			else {
+			} else {
 				dsbPrintf(out, "Content-Type: text/plain; charset=utf-8\r\n");
 			}
 			if (IS_PARTIAL_UTF8) {
