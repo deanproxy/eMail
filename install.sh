@@ -244,7 +244,7 @@ if [ ! -d "$docdir" ]; then
     fi
 fi
 
-cp -f email.1 README.md ChangeLog THANKS COPYING AUTHORS "$docdir"
+cp -f README.md ChangeLog THANKS COPYING AUTHORS "$docdir"
 if [ "$?" -ne 0 ]
 then
     echo "FAILED TO COPY documentation to $docdir"
