@@ -2,7 +2,7 @@
 # Process this file with autoconf to produce a configure script.
 cwd=`pwd`
 
-AC_PREREQ(2.57)
+AC_PREREQ(2.60)
 AC_INIT(email, 3, <dean.nospam@dean.nospam.proxy.com>)
 AC_CONFIG_SRCDIR([src/addr_parse.c])
 AC_CONFIG_HEADER([include/config.h])
