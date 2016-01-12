@@ -142,7 +142,7 @@ then
 fi
 if [ -z "$docdir" ]
 then
-    docdir="$prefix/doc"
+    docdir="$prefix/doc/email-$VERSION"
 fi
 
 echo "Binary directory: $bindir"
@@ -234,20 +234,20 @@ then
     exit 2
 fi
     
-echo "Copying email help documentation to $docdir/email-$VERSION... "
-if [ ! -d "$docdir/email-$VERSION" ]; then
-    mkdir -p "$docdir/email-$VERSION"
+echo "Copying email help documentation to $docdir... "
+if [ ! -d "$docdir" ]; then
+    mkdir -p "$docdir"
     if [ "$?" -ne 0 ]
     then
-        echo "FAILED TO MKDIR $docdir/email-$VERSION"
+        echo "FAILED TO MKDIR $docdir"
         exit 2
     fi
 fi
 
-cp -f email.1 README ChangeLog THANKS COPYING AUTHORS "$docdir/email-$VERSION"
+cp -f README.md ChangeLog THANKS COPYING AUTHORS "$docdir"
 if [ "$?" -ne 0 ]
 then
-    echo "FAILED TO COPY documentation to $docdir/email-$VERSION"
+    echo "FAILED TO COPY documentation to $docdir"
     exit 2
 fi
 
