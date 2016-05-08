@@ -157,7 +157,8 @@ processRemote(const char *smtp_serv, int smtp_port, dstrbuf *msg)
 	}
 
 	/* Start SMTP Communications */
-	if (smtpInit(sd, nodename) == ERROR) {
+	retval = smtpInit(sd, nodename);
+	if (retval == ERROR) {
 		printSmtpError();
 		goto end;
 	}

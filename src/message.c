@@ -610,7 +610,10 @@ createMail(void)
 
     dsbDestroy(msg);
 
-	sendmail(full_msg);
-	dsbDestroy(full_msg);
+    int retsend = sendmail(full_msg);
+    dsbDestroy(full_msg);
+    if (retsend == ERROR) {
+      properExit(ERROR);
+    }
 }
 
