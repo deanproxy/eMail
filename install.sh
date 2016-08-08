@@ -5,7 +5,7 @@ help ()
 {
     cat <<EOF
 This script is witten and maintained by Dean Jones.
-Please send bugs to <dean@cleancode.org>
+Please report bugs using https://github.com/deanproxy/eMail/issues
 Options are described below.
 
     --prefix dir            Specifies the main prefix to all directories
@@ -254,13 +254,13 @@ fi
 echo " Success!"
 cat << EOF
 
-#######################################################
-# Done installing E-Mail client.                      #
-# Please read README for information on setup and use.#
-#                                                     #
-# If you have any questions or concerns...            #
-# Please e-mail: software@cleancode.org               #
-#######################################################
+#########################################################
+# Done installing E-Mail client.                        #
+# Please read README for information on setup and use.  #
+#                                                       #
+# If you have any questions or concerns...              #
+# Please use: https://github.com/deanproxy/eMail/issues #
+#########################################################
 EOF
 
 

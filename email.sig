@@ -1,7 +1,7 @@
 
 --
 Sent using Email %v
-http://www.cleancode.org/projects/email
+http://deanproxy.com/code/
 
 Sent on: %c
 On System: %h

@@ -452,16 +452,16 @@ email \-s "files attached" Dean,Jeff --attach stuff.tar.gz,readme.doc
 
 If you find any in this program, please submit them to 
 .TP
-.B http://www.cleancode.org/projects/email/contact
+.B https://github.com/deanproxy/eMail/issues
 
 .SH AUTHORS
 
-.B Dean Jones   - http://www.cleancode.org/projects/email/contact
+.B Dean Jones   - http://deanproxy.com/contact/
 
 .SH THANKS FOR RELEASE V3.0
 .B Philip Lewis - Helped in debugging.
 
 .SH COPYRIGHT
 
-.B (C) 2001 - 2008
+.B (C) 2001 - 2016
 
