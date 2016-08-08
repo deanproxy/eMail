@@ -623,7 +623,7 @@ ac_includes_default="\
 #endif"
 
 ac_subst_vars='LTLIBOBJS
-ver
+cwd
 LIBOBJS
 SET_MAKE
 EGREP
@@ -5409,7 +5409,7 @@ else
     CFLAGS="$CFLAGS -DUSE_GNU_STRFTIME"
 fi
 
-ver="$version"
+cwd="$(pwd)"
 
 
 CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I$cwd/dlib/include"

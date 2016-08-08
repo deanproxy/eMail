@@ -1,7 +1,5 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-cwd=`pwd`
-
 AC_PREREQ(2.60)
 AC_INIT(email, 3, <dean.nospam@dean.nospam.proxy.com>)
 AC_CONFIG_SRCDIR([src/addr_parse.c])
@@ -63,7 +61,7 @@ else
     CFLAGS="$CFLAGS -DUSE_GNU_STRFTIME"
 fi
 
-AC_SUBST(ver, ["$version"])
+AC_SUBST(cwd, ["$(pwd)"])
 
 CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I$cwd/dlib/include"
 CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"`cat VERSION`\"' "
