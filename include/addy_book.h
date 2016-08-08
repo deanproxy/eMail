@@ -2,7 +2,7 @@
     eMail is a command line SMTP client.
 
     Copyright (C) 2001 - 2008 email by Dean Jones
-    Software supplied and written by http://www.cleancode.org
+    Software supplied and written by http://deanproxy.com/
 
     This file is part of eMail.
 

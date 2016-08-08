@@ -239,7 +239,7 @@ A: Yes! Email does `SMTP AUTH`.  You will need to set a few options in the `emai
 
 ####Q: Can I join the development team?
 
-A: Yes, send an email at http://www.cleancode.org/projects/email and ask how, or just clone it with git (see above on how to do that) and start coding and committing!
+A: Yes, send an email at http://deanproxy.com/contact/ and ask how, or just clone it with git (see above on how to do that) and start coding and committing!
 
 ---
 
@@ -263,9 +263,11 @@ My initial purpose was to make e-mail easier to send via command line and encryp
 
 A: Dean Jones - Main developer
 
+http://deanproxy.com/contact/
+
 That's about it so far. 
 I hope you like the program `eMail`.
 
-If you have any questions, bugs, or concerns email us at:
+If you have any questions, bugs, or concerns please use:
 
-http://www.cleancode.org/projects/email/contact
+https://github.com/deanproxy/eMail/issues

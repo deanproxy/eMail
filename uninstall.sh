@@ -5,7 +5,7 @@ help ()
 cat <<EOF
 
 This script is written and maintained by Dean Jones.
-Please send all bugs to <dean@cleancode.org>
+Please report all bugs using https://github.com/deanproxy/eMail/issues
 Options are described below and all are MANDITORY.
 
     --bindir dir        Specifies the directory to find the binary to remove.
