@@ -28,7 +28,7 @@ all:
 install:
 	./install.sh --bindir "$(DESTDIR)$(bindir)" --sysconfdir "$(DESTDIR)$(sysconfdir)" \
 		--mandir "$(DESTDIR)$(mandir)" --binext "$(bin_suffix)" --version "$(VERSION)" \
-        --docdir "$(DESTDIR)$(docdir)/email-$(VERSION)"
+        --docdir "$(DESTDIR)$(docdir)"
 
 distclean:
 	cd $(SRCDIR) && $(MAKE) clean-all
@@ -45,6 +45,6 @@ clean-all:
 
 uninstall:
 	./uninstall.sh --bindir "$(DEST_DIR)$(bindir)" --sysconfdir "$(DEST_DIR)$(sysconfdir)" \
-	    --mandir "$(DEST_DIR)$(mandir)" --docdir "$(DEST_DIR)$(docdir)/email-$(VERSION)" --version "$(VERSION)"
+	    --mandir "$(DEST_DIR)$(mandir)" --docdir "$(DEST_DIR)$(docdir)" --version "$(VERSION)"
 
 
