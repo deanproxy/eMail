@@ -1,10 +1,10 @@
 
-##This will explain the email program as well as it can.  
+## This will explain the email program as well as it can.  
 
 First thing is first.  This file will take place as sort of a FAQ sheet, because I already know what questions will be asked.
 
 
-####Q: How do I checkout the source from github and get everything I need?
+#### Q: How do I checkout the source from github and get everything I need?
 
 
 A: Type the following in a shell:
@@ -13,7 +13,7 @@ A: Type the following in a shell:
 
 ---
 
-####Q: What is `eMail` ?
+#### Q: What is `eMail` ?
 
 
 A:  `eMail` is a program I designed that will send email via the command line
@@ -23,7 +23,7 @@ A:  `eMail` is a program I designed that will send email via the command line
 
 ---
 
-####Q: How do I compile and Install this thing?
+#### Q: How do I compile and Install this thing?
 
 
 A: Just do this as root:
@@ -34,7 +34,7 @@ A: Just do this as root:
 
 ---
 
-####Q: Where is it installed?
+#### Q: Where is it installed?
 
 
 A: the executable is called 'email' and is installed in a directory that is under the prefix or bindir specified during the `./configure` of email. If you choose to specify a prefix during configure, it will go under `$bindir`. Which, by default, is an offset of `$prefix/bin`.  If you specify `--bindir` then the binary will be put in `$bindir`.
@@ -43,7 +43,7 @@ If you do not specify a directory prefix during configure, then it will go under
 
 ---
 
-####Q: How do I make your freakin' program work?
+#### Q: How do I make your freakin' program work?
 
 
 A: Well, first thing you should do, is configure this email client. You will have the configuration file in `/usr/local/etc/email/email.conf` Some less important options are not set `(address_book, save_sent_mail, temp_dir reply_to, signature_file, signature_divide)` but you can easily set these by hand and they are not needed to properly run email.
@@ -163,7 +163,7 @@ Example: Add headers to the message
 
 ---
 
-####Q: Do you allow signatures?
+#### Q: Do you allow signatures?
 
 A: Yes, we do.
 
@@ -193,7 +193,7 @@ Your sig could look like this:
 
 ---
 
-####Q: How does the address Book work?
+#### Q: How does the address Book work?
 
 A: Set up your email.conf file to point to your very own address book.
 
@@ -215,7 +215,7 @@ See the `email.address.template` file for more information
 
 ---
 
-###Q: Do you allow attachments?
+### Q: Do you allow attachments?
 
 A: YES!  We now support attachments with email!
 
@@ -231,19 +231,19 @@ Example:
 
 ---      
 
-####Q: Do you allow SMTP AUTH?
+#### Q: Do you allow SMTP AUTH?
 
 A: Yes! Email does `SMTP AUTH`.  You will need to set a few options in the `email.conf` file.  `SMTP_AUTH, SMTP_AUTH_USER and SMTP_AUTH_PASS`.  If you want to know more about this, please view the email manual page 'man email'.
 
 ---
 
-####Q: Can I join the development team?
+#### Q: Can I join the development team?
 
 A: Yes, send an email at http://deanproxy.com/contact/ and ask how, or just clone it with git (see above on how to do that) and start coding and committing!
 
 ---
 
-####Q: Why email?
+#### Q: Why email?
 
 A: Because 'mailx' won't send to remote smtp servers and I didn't have access to sendmail.
 
@@ -251,7 +251,7 @@ I needed something that would communicate with Remote smtp servers and encrypt m
 
 ---
 
-####Q: What does 'email' stand for?
+#### Q: What does 'email' stand for?
 
 A: Well, despite popular belief, it stands for "Encrypted Mail"  Not "Electronic Mail"
 
@@ -259,7 +259,7 @@ My initial purpose was to make e-mail easier to send via command line and encryp
 
 ---
 
-####Q: Who are the developers?
+#### Q: Who are the developers?
 
 A: Dean Jones - Main developer
 
