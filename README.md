@@ -201,7 +201,7 @@ There is a template in the email source directory that you can view to set up yo
 
 Any single name to email translation will have to have a 'single:' token before it:
 
-	single: Software    = software ^at^ cleancode.org
+	single: Software    = software@yourmomshouse.org
 	single: Dean        = dean@somedomain.org
 	single: "Full Name" = someone@somedomain.org
 

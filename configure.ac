@@ -24,9 +24,10 @@ AC_SEARCH_LIBS(socket, socket)
 AC_SEARCH_LIBS(sqrt, m)
 AC_SEARCH_LIBS(gethostbyname, nsl)
 if test -z "$use_ssl" -o "$use_ssl" = "yes"; then
-	AC_CHECK_LIB(ssl, SSL_library_init)
 	AC_SEARCH_LIBS(X509_free, crypto)
 	AC_SEARCH_LIBS(RAND_seed, crypto)
+   AC_CHECK_HEADERS([openssl/crypto.h openssl/x509.h openssl/pem.h openssl/ssl.h openssl/err.h])
+   AC_CHECK_LIB([ssl], [SSL_CTX_new])
 fi
 
 echo $LIBS
