@@ -623,6 +623,7 @@ ac_includes_default="\
 #endif"
 
 ac_subst_vars='LTLIBOBJS
+VERSION
 dlib_static
 cwd
 LIBOBJS
@@ -5450,7 +5451,9 @@ fi
 
 
 CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I${dlib_include}"
-CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"`cat VERSION`\"' "
+VERSION="${VERSION:-$(cat VERSION)}"
+
+CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"${VERSION}\"' "
 CFLAGS="$CFLAGS -DEMAIL_DIR='\"${sysconfdir}/email\"'"
 
 ac_config_files="$ac_config_files Makefile src/Makefile email.help email.1"

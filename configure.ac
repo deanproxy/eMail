@@ -74,7 +74,9 @@ AC_SUBST(cwd)
 AC_SUBST(dlib_static)
 
 CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I${dlib_include}"
-CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"`cat VERSION`\"' "
+VERSION="${VERSION:-$(cat VERSION)}"
+AC_SUBST(VERSION)
+CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"${VERSION}\"' "
 CFLAGS="$CFLAGS -DEMAIL_DIR='\"${sysconfdir}/email\"'"
 
 AC_CONFIG_FILES([Makefile

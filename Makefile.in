@@ -1,5 +1,5 @@
 MAKE = make
-VERSION = `cat VERSION`
+VERSION = @VERSION@
 SRCDIR = src/
 DESTDIR = 
 CC = @CC@
