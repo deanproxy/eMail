@@ -5,7 +5,8 @@ Maintainer: Mikhail Novosyolov <mikhailnov@dumalogiya.ru>
 Standards-Version: 4.1.4
 Homepage: https://github.com/deanproxy/email
 Build-Depends: debhelper (>=9),
-               libssl-dev
+               libssl-dev,
+               dlib-dev
 
 Package: email
 Architecture: any
