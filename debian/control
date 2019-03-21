@@ -1,0 +1,17 @@
+Source: email
+Section: mail
+Priority: optional
+Maintainer: Mikhail Novosyolov <mikhailnov@dumalogiya.ru>
+Standards-Version: 4.1.4
+Homepage: https://github.com/deanproxy/email
+Build-Depends: debhelper (>=9),
+               libssl-dev,
+               dlib-dev
+
+Package: email
+Architecture: any
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Description: CLI email client
+ Command line email client,
+ can work with SMTP and GnuPG

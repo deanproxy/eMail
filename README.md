@@ -32,6 +32,8 @@ A: Just do this as root:
     make
     make install
 
+If you want to use system dlib from e.g. /usr/include/dlib, then run `./configure --with-system-dlib`.
+
 ---
 
 #### Q: Where is it installed?

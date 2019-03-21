@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+
+# for install.sh
+VERSION = $(shell dpkg-parsechangelog | grep -E '^Version:' | cut -f 2 -d ' ')
+docdir = /usr/share/doc/email
+export VERSION docdir
+
+# Fail the build if some produced files
+# are not included in neither of multiple packages
+override_dh_missing:
+	dh_missing --fail-missing
+
+override_dh_auto_configure:
+	dh_auto_configure -- --with-system-dlib
+
+override_dh_auto_install:
+	dh_auto_install --
+	# Relocate docs installed by install.sh
+	# We should avois using this strange install script in the future and migrate to pure Makefile
+	mkdir -p debian/email/$(docdir)/
+	if [ -d debian/email/usr/share/doc/email-$(VERSION) ]; \
+		then mv -v debian/email//usr/share/doc/email-$(VERSION)/* debian/email/$(docdir)/ && rm -fr debian/email/usr/share/doc/email-$(VERSION); fi
+
+%:
+	dh $@

@@ -1,5 +1,5 @@
 MAKE = make
-VERSION = `cat VERSION`
+VERSION = @VERSION@
 SRCDIR = src/
 DESTDIR = 
 CC = @CC@
@@ -7,12 +7,15 @@ CFLAGS = @CFLAGS@ @DEFS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 DLIB = dlib/
+cwd = @cwd@
 PACKAGE_TARNAME=email-$(VERSION)
 
 prefix = @prefix@
 exec_prefix = @exec_prefix@
 bindir = @bindir@
 sbindir = @sbindir@
+libdir = @libdir@
+includedir = @includedir@
 mandir = @mandir@
 docdir = @docdir@
 sysconfdir = @sysconfdir@
@@ -23,7 +26,7 @@ bin_suffix = @EXEEXT@
 .PHONY: all clean-all clean distclean install uninstall
 
 all:
-	cd $(DLIB) && $(MAKE)
+	if [ "$(cwd)" != "$(includedir)" ]; then cd $(DLIB) && $(MAKE); fi
 	cd $(SRCDIR) && $(MAKE)
 
 install:
@@ -37,7 +40,7 @@ distclean:
 
 clean:
 	cd $(SRCDIR) && $(MAKE) clean
-	cd $(DLIB) && $(MAKE) clean
+	if [ "$(cwd)" != "$(includedir)" ]; cd $(DLIB) && $(MAKE) clean; fi
 
 clean-all:
 	cd $(SRCDIR) && $(MAKE) clean-all

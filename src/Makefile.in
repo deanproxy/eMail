@@ -5,7 +5,7 @@ CC = @CC@
 CFLAGS = @CFLAGS@ @DEFS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
-DLIB = ../dlib/libdlib.a
+DLIB = @dlib_static@
 
 prefix = @prefix@
 bindir = @bindir@

@@ -62,10 +62,21 @@ else
     CFLAGS="$CFLAGS -DUSE_GNU_STRFTIME"
 fi
 
-AC_SUBST(cwd, ["$(pwd)"])
+AC_ARG_WITH(
+	[system-dlib],
+	AS_HELP_STRING(
+		[--with-system-dlib],
+		[Use system dlib, default if off]),
+	[cwd="${includedir}"; dlib_include=${includedir}/dlib; dlib_static=${libdir}/libdlib.a],
+	[cwd="$(pwd)"; dlib_include=$(pwd)/dlib/include; dlib_static=../dlib/libdlib.a]
+)
+AC_SUBST(cwd)
+AC_SUBST(dlib_static)
 
-CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I$cwd/dlib/include"
-CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"`cat VERSION`\"' "
+CFLAGS="$CFLAGS -I$cwd -I$cwd/src -I$cwd/include -I../include -I${dlib_include}"
+VERSION="${VERSION:-$(cat VERSION)}"
+AC_SUBST(VERSION)
+CFLAGS="$CFLAGS -I../dlib/include -DEMAIL_VERSION='\"${VERSION}\"' "
 CFLAGS="$CFLAGS -DEMAIL_DIR='\"${sysconfdir}/email\"'"
 
 AC_CONFIG_FILES([Makefile
