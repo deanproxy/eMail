@@ -349,8 +349,10 @@ main(int argc, char **argv)
 		dstrbuf *vcard = expandPath(getConfValue("VCARD"));
 		if (!Mopts.attach) {
 			Mopts.attach = dlInit(defaultDestr);
+			dlInsertTop(Mopts.attach, xstrdup(vcard->str));
+		} else {
+			dlInsertEnd(Mopts.attach, xstrdup(vcard->str));
 		}
-		dlInsertTop(Mopts.attach, xstrdup(vcard->str));
 		dsbDestroy(vcard);
 	}
 
