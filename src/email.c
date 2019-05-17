@@ -245,8 +245,10 @@ main(int argc, char **argv)
 		case 'a':
 			if (!Mopts.attach) {
 				Mopts.attach = dlInit(defaultDestr);
+				dlInsertTop(Mopts.attach, xstrdup(optarg));
+			} else {
+				dlInsertEnd(Mopts.attach, xstrdup(optarg));
 			}
-			dlInsertTop(Mopts.attach, xstrdup(optarg));
 			break;
 		case 'V':
 			Mopts.verbose = true;
