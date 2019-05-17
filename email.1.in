@@ -257,7 +257,6 @@ listed below.
   MY_EMAIL          : Specify your email address
   REPLY_TO          : Seperate reply to address
   SIGNATURE_FILE    : Your signature file
-  SIGNATURE_DIVIDE  : A design for a divider
   ADDRESS_BOOK      : Location of your address book file
   SAVE_SENT_MAIL    : Directory to save email.sent file
   GPG_BIN           : Full path to gpg binary
