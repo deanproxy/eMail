@@ -39,7 +39,7 @@
 #include "utils.h"
 #include "error.h"
 
-#define MAX_CONF_VARS 20
+#define MAX_CONF_VARS 32
 
 /* There are the variables accepted in the configuration file */
 static char conf_vars[MAX_CONF_VARS][MAXBUF] = {
@@ -59,7 +59,9 @@ static char conf_vars[MAX_CONF_VARS][MAXBUF] = {
 	"USE_TLS",
 	"SMTP_AUTH_USER",
 	"SMTP_AUTH_PASS",
-	"VCARD"
+	"VCARD",
+	"TIMEOUT",
+	""
 };
 
 /**
@@ -71,7 +73,7 @@ checkVar(dstrbuf *var)
 {
 	int i;
 
-	for (i = 0; i < MAX_CONF_VARS; i++) {
+	for (i = 0; strcasecmp("", conf_vars[i]) ; i++) {
 		if (strcasecmp(var->str, conf_vars[i]) == 0) {
 			return 0;
 		}
@@ -167,7 +169,7 @@ readConfig(FILE *in)
 				ch = line;
 				goto exit;
 			} else if (checkVar(var) < 0) {
-				fatal("Variable: '%s' is not valid\n", var);
+				fatal("Variable: '%s' is not valid\n", var->str);
 				ch = line;
 				goto exit;
 			}
