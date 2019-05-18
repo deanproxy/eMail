@@ -245,8 +245,10 @@ main(int argc, char **argv)
 		case 'a':
 			if (!Mopts.attach) {
 				Mopts.attach = dlInit(defaultDestr);
+				dlInsertTop(Mopts.attach, xstrdup(optarg));
+			} else {
+				dlInsertEnd(Mopts.attach, xstrdup(optarg));
 			}
-			dlInsertTop(Mopts.attach, xstrdup(optarg));
 			break;
 		case 'V':
 			Mopts.verbose = true;
@@ -347,8 +349,10 @@ main(int argc, char **argv)
 		dstrbuf *vcard = expandPath(getConfValue("VCARD"));
 		if (!Mopts.attach) {
 			Mopts.attach = dlInit(defaultDestr);
+			dlInsertTop(Mopts.attach, xstrdup(vcard->str));
+		} else {
+			dlInsertEnd(Mopts.attach, xstrdup(vcard->str));
 		}
-		dlInsertTop(Mopts.attach, xstrdup(vcard->str));
 		dsbDestroy(vcard);
 	}
 

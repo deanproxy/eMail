@@ -40,7 +40,7 @@ distclean:
 
 clean:
 	cd $(SRCDIR) && $(MAKE) clean
-	if [ "$(cwd)" != "$(includedir)" ]; cd $(DLIB) && $(MAKE) clean; fi
+	if [ "$(cwd)" != "$(includedir)" ]; then cd $(DLIB) && $(MAKE) clean; fi
 
 clean-all:
 	cd $(SRCDIR) && $(MAKE) clean-all
