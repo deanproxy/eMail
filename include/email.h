@@ -60,11 +60,11 @@ struct addr {
 typedef enum { GPG_SIG=0x01, GPG_ENC=0x02 } GpgCallType;
 
 
-/* Globally defined vars */
-dhash table;
-char *conf_file;
+/* Globally declared vars */
+extern dhash table;
+extern char *conf_file;
 
-struct mailer_options {
+extern struct mailer_options {
 	bool verbose;
 	bool encoding;
 	short html;
