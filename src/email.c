@@ -40,6 +40,11 @@
 #include "error.h"
 #include "mimeutils.h"
 
+/* Globally defined vars */
+dhash table;
+char *conf_file;
+struct mailer_options Mopts;
+
 static void
 defaultDestr(void *ptr)
 {
