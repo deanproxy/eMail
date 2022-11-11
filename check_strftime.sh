@@ -14,6 +14,7 @@ cat << EOF > /tmp/strftime_try.c
 #include <stdlib.h>
 #include <time.h>
 #include <sys/time.h>
+#include <ctype.h>
 
 int
 main (void)
